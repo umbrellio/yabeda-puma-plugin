@@ -19,8 +19,6 @@ module Yabeda
           private
 
           def parse(stats, labels, result)
-            return {} if stats["pid"] && Process.pid != stats["pid"]
-
             stats.each do |key, value|
               case key
               when 'worker_status'
