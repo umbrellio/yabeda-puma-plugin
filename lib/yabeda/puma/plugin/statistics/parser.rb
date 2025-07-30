@@ -13,7 +13,8 @@ module Yabeda
           end
 
           def call
-            [].tap { |result| parse(data, {}, result) }
+            labels = { deployment: ENV["PUMA_DEPLOYMENT"] }.compact
+            [].tap { |result| parse(data, labels, result) }
           end
 
           private
