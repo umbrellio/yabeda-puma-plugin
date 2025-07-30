@@ -13,7 +13,8 @@ module Yabeda
           end
 
           def call
-            labels = { deployment: ENV["PUMA_DEPLOYMENT"] }.compact
+            deployment = ENV.fetch("PUMA_DEPLOYMENT", "main")
+            labels = { deployment: }
             [].tap { |result| parse(data, labels, result) }
           end
 

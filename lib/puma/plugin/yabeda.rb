@@ -15,16 +15,16 @@ Puma::Plugin.create do
     Yabeda.configure do
       group :puma
 
-      gauge :backlog, tags: %i[index], comment: 'Number of established but unaccepted connections in the backlog', aggregation: :most_recent
-      gauge :running, tags: %i[index], comment: 'Number of running worker threads', aggregation: :most_recent
-      gauge :pool_capacity, tags: %i[index], comment: 'Number of allocatable worker threads', aggregation: :most_recent
-      gauge :busy_threads, tags: %i[index], comment: 'Maximum number of busy threads', aggregation: :most_recent
-      gauge :max_threads, tags: %i[index], comment: 'Maximum number of worker threads', aggregation: :most_recent
+      gauge :backlog, tags: %i[index deployment], comment: 'Number of established but unaccepted connections in the backlog', aggregation: :most_recent
+      gauge :running, tags: %i[index deployment], comment: 'Number of running worker threads', aggregation: :most_recent
+      gauge :pool_capacity, tags: %i[index deployment], comment: 'Number of allocatable worker threads', aggregation: :most_recent
+      gauge :busy_threads, tags: %i[index deployment], comment: 'Maximum number of busy threads', aggregation: :most_recent
+      gauge :max_threads, tags: %i[index deployment], comment: 'Maximum number of worker threads', aggregation: :most_recent
 
       if clustered
-        gauge :workers, comment: 'Number of configured workers', aggregation: :most_recent
-        gauge :booted_workers, comment: 'Number of booted workers', aggregation: :most_recent
-        gauge :old_workers, comment: 'Number of old workers', aggregation: :most_recent
+        gauge :workers, tags: %i[deployment], comment: 'Number of configured workers', aggregation: :most_recent
+        gauge :booted_workers, tags: %i[deployment], comment: 'Number of booted workers', aggregation: :most_recent
+        gauge :old_workers, tags: %i[deployment], comment: 'Number of old workers', aggregation: :most_recent
       end
 
       collect do
